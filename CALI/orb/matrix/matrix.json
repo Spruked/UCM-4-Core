@@ -1,0 +1,308 @@
+{
+  "observations": [
+    {
+      "core_id": "test_core",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.8
+      },
+      "context": {
+        "context": "test"
+      },
+      "timestamp": "2026-01-11T20:48:05.383616",
+      "sequence": 0
+    },
+    {
+      "core_id": "Caleon_Genesis",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.85,
+        "reasoning": "Pattern matches historical data"
+      },
+      "context": {
+        "domain": "test_scenario"
+      },
+      "timestamp": "2026-01-11T20:48:36.927122",
+      "sequence": 0
+    },
+    {
+      "core_id": "CALI",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.92,
+        "reasoning": "Ontological consistency verified"
+      },
+      "context": {
+        "domain": "test_scenario"
+      },
+      "timestamp": "2026-01-11T20:48:36.929122",
+      "sequence": 1
+    },
+    {
+      "core_id": "KayGee",
+      "verdict": {
+        "decision": "reject",
+        "confidence": 0.78,
+        "reasoning": "Resonance analysis shows anomaly"
+      },
+      "context": {
+        "domain": "test_scenario"
+      },
+      "timestamp": "2026-01-11T20:48:36.931122",
+      "sequence": 2
+    },
+    {
+      "core_id": "Cali_X_One",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.67,
+        "reasoning": "SKG metrics within tolerance"
+      },
+      "context": {
+        "domain": "test_scenario"
+      },
+      "timestamp": "2026-01-11T20:48:36.931122",
+      "sequence": 3
+    },
+    {
+      "core_id": "Caleon_Genesis",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.85
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:52:32.054798",
+      "sequence": 0
+    },
+    {
+      "core_id": "CALI",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.92
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:52:32.172215",
+      "sequence": 1
+    },
+    {
+      "core_id": "KayGee",
+      "verdict": {
+        "decision": "reject",
+        "confidence": 0.78
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:52:32.293609",
+      "sequence": 2
+    },
+    {
+      "core_id": "Cali_X_One",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.67
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:52:32.416942",
+      "sequence": 3
+    },
+    {
+      "core_id": "Caleon_Genesis",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.85
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:07.632856",
+      "sequence": 0
+    },
+    {
+      "core_id": "CALI",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.92
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:07.748204",
+      "sequence": 1
+    },
+    {
+      "core_id": "KayGee",
+      "verdict": {
+        "decision": "reject",
+        "confidence": 0.78
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:07.856360",
+      "sequence": 2
+    },
+    {
+      "core_id": "Cali_X_One",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.67
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:07.973696",
+      "sequence": 3
+    },
+    {
+      "core_id": "Caleon_Genesis",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.85
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:27.651434",
+      "sequence": 0
+    },
+    {
+      "core_id": "CALI",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.92
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:27.754690",
+      "sequence": 1
+    },
+    {
+      "core_id": "KayGee",
+      "verdict": {
+        "decision": "reject",
+        "confidence": 0.78
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:27.864626",
+      "sequence": 2
+    },
+    {
+      "core_id": "Cali_X_One",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.67
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:27.972865",
+      "sequence": 3
+    },
+    {
+      "core_id": "Caleon_Genesis",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.85
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:29.164148",
+      "sequence": 4
+    },
+    {
+      "core_id": "CALI",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.92
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:29.279593",
+      "sequence": 5
+    },
+    {
+      "core_id": "KayGee",
+      "verdict": {
+        "decision": "reject",
+        "confidence": 0.78
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:29.391792",
+      "sequence": 6
+    },
+    {
+      "core_id": "Cali_X_One",
+      "verdict": {
+        "decision": "accept",
+        "confidence": 0.67
+      },
+      "context": {
+        "context": "test scenario 1"
+      },
+      "timestamp": "2026-01-11T20:53:29.509347",
+      "sequence": 7
+    }
+  ],
+  "patterns": {
+    "test_core": {
+      "verdict_count": 1,
+      "confidence_sum": 0.8,
+      "last_verdict": {
+        "decision": "accept",
+        "confidence": 0.8
+      },
+      "consistency_score": 1.0
+    },
+    "Caleon_Genesis": {
+      "verdict_count": 5,
+      "confidence_sum": 4.25,
+      "last_verdict": {
+        "decision": "accept",
+        "confidence": 0.85
+      },
+      "consistency_score": 0.85
+    },
+    "CALI": {
+      "verdict_count": 5,
+      "confidence_sum": 4.6000000000000005,
+      "last_verdict": {
+        "decision": "accept",
+        "confidence": 0.92
+      },
+      "consistency_score": 0.9200000000000002
+    },
+    "KayGee": {
+      "verdict_count": 5,
+      "confidence_sum": 3.9000000000000004,
+      "last_verdict": {
+        "decision": "reject",
+        "confidence": 0.78
+      },
+      "consistency_score": 0.78
+    },
+    "Cali_X_One": {
+      "verdict_count": 5,
+      "confidence_sum": 3.35,
+      "last_verdict": {
+        "decision": "accept",
+        "confidence": 0.67
+      },
+      "consistency_score": 0.67
+    }
+  },
+  "saved_at": "2026-01-11T20:53:30.686918"
+}

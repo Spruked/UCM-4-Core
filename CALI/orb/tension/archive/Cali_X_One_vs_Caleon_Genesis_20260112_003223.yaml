@@ -1,0 +1,16 @@
+context: {}
+created_at: '2026-01-12T00:32:23.935652'
+id: Cali_X_One_vs_Caleon_Genesis_20260112_003223
+participants:
+- Cali_X_One
+- Caleon_Genesis
+recursion_count: 0
+resolution: null
+status: unresolved
+verdicts:
+  Caleon_Genesis:
+    confidence: 0.9
+    recommendation: REJECT
+  Cali_X_One:
+    confidence: 0.8
+    recommendation: ACCEPT
