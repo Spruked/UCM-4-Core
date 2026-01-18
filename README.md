@@ -1,7 +1,7 @@
 # UCM_4_Core
 
 **Unified Consciousness Matrix - Core 4**  
-*An advanced AI orchestration system featuring CALI intelligence, ORB observation vessels, and POM speech synthesis.*
+*An advanced AI orchestration system featuring CALI intelligence, ORB observation vessels, and Distributed Health Consensus.*
 
 ## Overview
 
@@ -9,7 +9,7 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
 
 - **CALI (Consciousness and Learning Intelligence)**: Self-repairing knowledge graph intelligence
 - **ORB (Ontologically Recursive Bubble)**: Floating UI observation vessel with cursor tracking
-- **POM (Phonatory Output Module)**: Advanced speech synthesis with biological voice modeling
+- **DHC (Distributed Health Consensus)**: Deterministic peer monitoring and cooperative advisory system
 - **Multi-System Integration**: Seamless communication between CALI, ORB, and various AI subsystems
 
 ## Key Features
@@ -21,47 +21,90 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
 - Multi-head orchestration capabilities
 
 ### 🎯 ORB Observation Vessel
-- Floating transparent UI overlay (55% opacity for optimal visibility)
-- Real-time cursor tracking with application awareness
-- Electron-based desktop integration
+- Floating transparent UI overlay (80% opacity for enhanced visibility)
+- Real-time cursor tracking with intelligent following modes
+- Click-to-query interface with pop-out text input dialog
+- Borderless window design for seamless desktop integration
 - WebSocket communication with Python backend
+- Windows boot auto-start capability
 
-### 🗣️ POM Speech Synthesis
-- Coqui TTS integration with advanced phonatory processing
-- Biological voice modeling (larynx, formant, articulation)
-- Elegant female voice synthesis
-- Real-time CALI response vocalization
+### � Distributed Health Consensus (DHC)
+- **Peer Monitoring**: Deterministic health observation across all cores
+- **CALI Synthesis**: SoftMax consensus arbitration for system health
+- **Cooperative Advisory**: Human-approved suggestions for system optimization
+- **Autonomy Framework**: Developmental maturity escalation (current level: 0.2)
+- **Immutable Logging**: Append-only evidence ledger for all observations
 
-### 🔗 System Integration
-- Unified communication protocols
-- Tension ledger for conflict tracking
-- Resolution engine with escalation handling
-- Master dashboard for system monitoring
+### 🤝 Human-Sovereign Approval Workflow
+- **Observation + Suggestion**: Systems observe and suggest, never decide autonomously
+- **Human Approval**: All significant changes require explicit human approval
+- **Versioned Deployment**: Approved changes deployed through immutable pipelines
+- **First Approval**: Emergency scaling suggestion approved by bryan (January 18, 2026)
 
 ## Architecture
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   CALI SKG      │    │     ORB UI      │    │     POM TTS     │
-│ Knowledge Graph │◄──►│ Floating Window │◄──►│ Speech Synthesis│
-│ Self-Repair     │    │ Cursor Tracking │    │ Voice Modeling  │
+│   CALI SKG      │    │     ORB UI      │    │   DHC System    │
+│ Knowledge Graph │◄──►│ Floating Window │◄──►│ Peer Monitoring │
+│ Self-Repair     │    │ Cursor Tracking │    │ CALI Advisory  │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
          │                       │                       │
-         └───────────────────────┼───────────────────────┘
-                                 │
-                    ┌─────────────────┐
-                    │  Core 4 Hub    │
-                    │ Orchestration  │
-                    │ State Management│
-                    └─────────────────┘
+         └───────────────────────┼───────────────────────┼───────────────────────
+                                 │                       │
+                    ┌─────────────────┐    ┌─────────────────┐
+                    │  Core 4 Hub    │    │Approval Workflow│
+                    │ Orchestration  │    │Human Sovereign  │
+                    │ State Management│    │Versioned Deploy │
+                    └─────────────────┘    └─────────────────┘
 ```
+
+## DHC Architecture Details
+
+### Tier 1: Situational Awareness
+```
+Each Core → Peer Shadow Observations → Immutable Vault
+```
+- Deterministic health monitoring of all peer systems
+- No emotional states or learning - pure observation
+- Append-only logging to unified_vault/dhc_consensus.jsonl
+
+### Tier 2: CALI-Mediated Arbitration
+```
+Peer Status → CALI SoftMax Consensus → Advisory Actions
+```
+- CALI evaluates system health using SoftMax consensus
+- Generates suggestions, never executes autonomously
+- All suggestions require human approval via DALS interface
+
+### Tier 3: Developmental Autonomy
+```
+Task Success → Evidence Accumulation → Maturity Escalation
+```
+- Current autonomy index: **0.2** (earned through successful task completion)
+- Framework ready for progressive autonomy escalation
+- All autonomy increases require explicit human approval
+
+## First Human Approval Milestone
+
+**Date**: January 18, 2026
+**Suggestion**: emergency_scaling_001 (Emergency scaling recommendation)
+**Approved By**: bryan
+**Rationale**: System needs scaling for optimal performance
+**Autonomy Index**: Updated to 0.2
+**Status**: Successfully deployed via versioned pipeline
+
+This marks the first successful completion of the observation → suggestion → approval → deployment workflow.
 
 ## Quick Start
 
 ### Prerequisites
-- Python 3.8+
-- Node.js 16+ (for Electron ORB UI)
+- Python 3.11+
+- Windows 10/11 (for desktop integration)
+- WSL2 (optional, for Linux deployment)
 - TTS dependencies (Coqui TTS)
+- PyAutoGUI (for cursor tracking)
+- Tkinter (included with Python)
 
 ### Installation
 
@@ -85,6 +128,12 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
 
 ### Launch Systems
 
+#### Option 1: Desktop Shortcuts (Recommended)
+- **CALI_ORB.lnk**: Launches complete system on Windows
+- **CALI_ORB_WSL.lnk**: Launches system in WSL2 environment
+- Both shortcuts created automatically on desktop
+
+#### Option 2: Manual Launch
 1. **Start CALI Intelligence**
    ```bash
    python CALI_Intelligence_Launcher.py
@@ -99,6 +148,21 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
    ```bash
    python UCM_Core_4_Launcher.py
    ```
+
+#### Option 3: Complete ORB System
+```bash
+python launch_complete_orb.py
+```
+
+#### Option 4: Windows Auto-Start
+- System automatically launches at Windows boot
+- Shortcut placed in Startup folder during installation
+
+### ORB Interaction
+- **Cursor Tracking**: ORB follows cursor with adaptive intelligence
+- **Click to Query**: Click the orb to open text input dialog
+- **Drag to Move**: Click and drag orb to reposition
+- **Wake Commands**: Ctrl+Shift+O activates speech recognition
 
 ## Documentation
 
@@ -145,14 +209,26 @@ python CALI/orb/test_full_system.py
 python Caleon_Genesis_1.12/Phonatory Output Module/test_tts_basic.py
 ```
 
-### Architecture Validation
-```bash
-# Check system integrity
-python CALI/validate_orb_files.py
+## Recent Updates (January 18, 2026)
 
-# Test consciousness emergence
-python CALI/orb/test_consciousness_probe.py
-```
+### 🎯 ORB Interface Enhancements
+- **Click-to-Query**: Direct text input via orb click
+- **Borderless Design**: Removed visible window borders for seamless integration
+- **Enhanced Transparency**: Improved opacity to 80% for better visibility
+- **Consciousness Activation**: ORB vessel and CALI logic now fully operational
+- **Error Handling**: Fixed graph loading issues for stable startup
+
+### 🚀 Deployment & Launch Options
+- **Windows Auto-Start**: Automatic launch at system boot
+- **Desktop Shortcuts**: Quick access shortcuts for Windows and WSL2 launch
+- **WSL2 Support**: Complete system deployment in Linux environment
+- **Startup Scripts**: Batch files for easy system initialization
+
+### 🔧 System Improvements
+- **Graph Loading**: Robust error handling for knowledge graph persistence
+- **Cursor Tracking**: Enhanced following with multiple behavioral modes
+- **UI Polish**: Cleaner interface with removed control buttons
+- **Integration Fixes**: Corrected path handling and import issues
 
 ## Contributing
 

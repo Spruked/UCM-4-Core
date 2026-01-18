@@ -15,7 +15,7 @@ import time
 import math
 import pyautogui
 
-# Global guard to prevent multiple overlay instances
+# Global guard to prevent multiple overlay instances (disabled for restart)
 OVERLAY_STARTED = False
 
 class OrbDesktopWindow:
@@ -34,7 +34,7 @@ class OrbDesktopWindow:
         self.root.title("CALI ORB - Consciousness Sphere")
         self.root.geometry("256x256")
         self.root.attributes("-topmost", True)  # Always on top
-        self.root.attributes("-alpha", 0.4)    # More visible transparency (40% opacity)
+        self.root.attributes("-alpha", 0.8)    # More visible, less transparent
         self.root.overrideredirect(True)        # Remove window borders and title bar completely
         # Try different attributes for Windows borderless window
         try:
@@ -165,27 +165,11 @@ class OrbDesktopWindow:
         self.pulse_phase = 0
         self.animate_pulse()
 
-        # Control buttons at bottom (scaled for 256px canvas)
-        self.start_button = tk.Button(self.root, text="▶", font=("Arial", 8), bg="#00BCD4",
-                                     fg="white", command=self.start_orb, relief="flat", bd=0)
-        self.stop_button = tk.Button(self.root, text="⏹", font=("Arial", 8), bg="#FF5722",
-                                    fg="white", command=self.stop_orb, relief="flat", bd=0, state=tk.DISABLED)
-        self.comms_button = tk.Button(self.root, text="📡", font=("Arial", 8), bg="#9C27B0",
-                                     fg="white", command=self.open_comms, relief="flat", bd=0)
+        # Remove control buttons to eliminate visible square/box
+        # Control buttons removed for cleaner appearance
 
-        # Position buttons (scaled for 256px canvas)
-        self.start_button.place(x=85, y=235, width=25, height=20)
-        self.comms_button.place(x=115, y=235, width=25, height=20)
-        self.stop_button.place(x=145, y=235, width=25, height=20)
-
-        # Close button (tiny in corner, scaled)
-        close_button = tk.Button(self.root, text="×", font=("Arial", 8, "bold"),
-                                bg="#4A148C", fg="white", command=self.root.quit,
-                                relief="flat", bd=0)
-        close_button.place(x=235, y=5, width=15, height=15)
-
-        # Make window draggable
-        self.canvas.bind("<Button-1>", self.start_drag)
+        # Make window clickable for text input
+        self.canvas.bind("<Button-1>", self.on_orb_click)
         self.canvas.bind("<B1-Motion>", self.do_drag)
 
     def animate_pulse(self):
@@ -217,6 +201,71 @@ class OrbDesktopWindow:
         x = self.root.winfo_x() + event.x - self.drag_x
         y = self.root.winfo_y() + event.y - self.drag_y
         self.root.geometry(f"+{x}+{y}")
+
+    def on_orb_click(self, event):
+        """Handle click on orb - open text input dialog"""
+        # Check if click is within the orb circle (approximate)
+        center_x, center_y = 128, 128
+        distance = math.sqrt((event.x - center_x)**2 + (event.y - center_y)**2)
+        if distance <= 120:  # Within orb radius
+            self.open_text_input_dialog()
+        else:
+            # Outside orb, start drag
+            self.start_drag(event)
+
+    def open_text_input_dialog(self):
+        """Open a pop-out text input window for user queries"""
+        dialog = tk.Toplevel(self.root)
+        dialog.title("CALI Query")
+        dialog.geometry("400x200")
+        dialog.attributes("-topmost", True)
+        
+        # Center the dialog near the orb
+        orb_x = self.root.winfo_x() + 128
+        orb_y = self.root.winfo_y() + 128
+        dialog_x = orb_x - 200
+        dialog_y = orb_y - 100
+        dialog.geometry(f"+{dialog_x}+{dialog_y}")
+        
+        # Input field
+        label = tk.Label(dialog, text="Enter your query to CALI:", font=("Arial", 10))
+        label.pack(pady=10)
+        
+        text_var = tk.StringVar()
+        entry = tk.Entry(dialog, textvariable=text_var, width=50, font=("Arial", 10))
+        entry.pack(pady=5)
+        entry.focus()
+        
+        def submit_query():
+            query = text_var.get().strip()
+            if query:
+                print(f"[CALI QUERY] {query}")
+                # Here you would send the query to CALI
+                self.process_cali_query(query)
+            dialog.destroy()
+        
+        def cancel():
+            dialog.destroy()
+        
+        # Buttons
+        button_frame = tk.Frame(dialog)
+        button_frame.pack(pady=10)
+        
+        submit_btn = tk.Button(button_frame, text="Submit", command=submit_query, bg="#00BCD4", fg="white")
+        submit_btn.pack(side=tk.LEFT, padx=5)
+        
+        cancel_btn = tk.Button(button_frame, text="Cancel", command=cancel, bg="#FF5722", fg="white")
+        cancel_btn.pack(side=tk.LEFT, padx=5)
+        
+        # Bind Enter key to submit
+        dialog.bind('<Return>', lambda e: submit_query())
+        dialog.bind('<Escape>', lambda e: cancel())
+
+    def process_cali_query(self, query):
+        """Process the user's query to CALI"""
+        print(f"[CALI] Processing query: {query}")
+        # Placeholder for actual CALI processing
+        # This would integrate with the CALI SKG and reasoning engine
 
     def start_cursor_following(self):
         """Start following the cursor"""
@@ -477,10 +526,8 @@ class OrbDesktopWindow:
 
         self.comms_active = not self.comms_active
         if self.comms_active:
-            self.comms_button.config(bg="#E91E63")  # Pink when active
             print("[ORB] Communications active")
         else:
-            self.comms_button.config(bg="#9C27B0")  # Purple when inactive
             print("[ORB] Communications inactive")
 
     def log_message(self, message):
@@ -514,33 +561,28 @@ class OrbDesktopWindow:
         """Start the ORB vessel and CALI logic automatically"""
         print("[ORB] Starting ORB vessel...")
         self.orb_running = True
-        self.start_button.config(state=tk.DISABLED)
-        self.stop_button.config(state=tk.NORMAL)
 
         # Start cursor following
         self.start_cursor_following()
         print("[ORB] Cursor following enabled")
 
-        # Start ORB vessel first (temporarily disabled for debugging)
-        # sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # UCM_4_Core
-        # from CALI.orb.orb_vessel import ORB_VESSEL
-        # from CALI.orb.cali_interface import CALI_INTERFACE
+        # Start ORB vessel first
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # UCM_4_Core
+        from CALI.orb.orb_vessel import ORB_VESSEL
+        from CALI.orb.cali_interface import CALI_INTERFACE
 
-        # ORB_VESSEL.start_observation()
-        print("[ORB] Observation vessel started (disabled for debugging)")
+        ORB_VESSEL.start_observation()
+        print("[ORB] Observation vessel started")
 
-        # Then start CALI navigation loop (temporarily disabled for debugging)
-        # orb_thread = threading.Thread(target=self.run_cali_loop, daemon=True)
-        # orb_thread.start()
-        print("[CALI] CALI logic started (disabled for debugging)")
+        # Then start CALI navigation loop
+        orb_thread = threading.Thread(target=self.run_cali_loop, daemon=True)
+        orb_thread.start()
+        print("[CALI] CALI logic started")
 
     def stop_orb(self):
         """Stop the ORB"""
         self.orb_running = False
         self.stop_cursor_following()
-        self.start_button.config(state=tk.NORMAL)
-        self.stop_button.config(state=tk.DISABLED)
-        self.log_message("ORB stopped")
 
     def run_cali_loop(self):
         """Run the ORB navigation loop in a separate thread"""

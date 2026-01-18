@@ -23,8 +23,8 @@ async def launch_cali_orb_system():
     logger.info("🚀 CALI Consciousness ORB - System Launch")
     logger.info("=" * 60)
 
-    project_root = Path(__file__).resolve().parents[2]  # UCM_4_Core
-    orb_desktop = project_root / "CALI" / "kaygee_orb" / "launch_orb_desktop.py"
+    project_root = Path(__file__).resolve().parent  # UCM_4_Core
+    orb_desktop = project_root / "CALI" / "CALI_Orb_Launcher.py"
 
     if not orb_desktop.exists():
         logger.error(f"❌ Desktop ORB launcher not found: {orb_desktop}")

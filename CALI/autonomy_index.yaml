@@ -1,0 +1,35 @@
+# UCM_4_Core/CALI/cali_immutable_matrix/autonomy_index.yaml
+
+maturity_levels:
+  level_0: "Fully supervised - all actions require approval"
+  level_1: "Task approval - self-execute within approved task types"
+  level_2: "Goal approval - propose new goals, human approves"
+  level_3: "Bounded initiative - self-optimize within constitutional constraints"
+  level_4: "Trusted autonomy - CALI veto only, no approval required"
+
+current_state:
+  KayGee_1.0: 0  # Voice system: fully supervised
+  Caleon_Genesis_1.12: 0  # Content generation: fully supervised
+  Cali_X_One: 0  # Extended reasoning: fully supervised
+  UCM_Core_ECM: 0  # Epistemic convergence: fully supervised
+
+escalation_triggers:
+  - "Any core requesting level 1 requires 1000 successful tasks"
+  - "Any core requesting level 2 requires 10,000 successful tasks + SoftMax consensus > 0.90"
+  - "Levels 3-4 require human review and constitutional amendment"
+
+# Immutable evidence log (append-only)
+evidence_log:
+  - timestamp: "2026-01-18"
+    core: "Cali_X_One"
+    event: "peer_awareness_initialization"
+    evidence: "Successfully deployed deterministic peer monitoring protocol"
+    task_count: 1
+    autonomy_impact: 0
+
+  - timestamp: "2026-01-18"
+    core: "peer_awareness"
+    event: "first_scan_completed"
+    evidence: "Scanned all 4 cores, detected 3 stressed/offline peers"
+    task_count: 1
+    autonomy_impact: 0

@@ -55,9 +55,17 @@ class SKGEngine:
     def _load_graph(self):
         """Load SKG graph from disk"""
         if self.graph_file.exists():
-            with open(self.graph_file, 'r') as f:
-                data = json.load(f)
-                self.graph = nx.node_link_graph(data)
+            try:
+                with open(self.graph_file, 'r') as f:
+                    data = json.load(f)
+                    if 'edges' in data and 'nodes' in data:
+                        self.graph = nx.node_link_graph(data)
+                    else:
+                        print(f"[SKG] Graph file missing required keys, starting fresh")
+                        self.graph = nx.DiGraph()
+            except (json.JSONDecodeError, KeyError) as e:
+                print(f"[SKG] Error loading graph: {e}, starting fresh")
+                self.graph = nx.DiGraph()
                 
     def _save_graph(self):
         """Persist graph to disk"""

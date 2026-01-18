@@ -1,0 +1,542 @@
+[
+  {
+    "timestamp": 1768722223.7806163,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768722223.7806163,
+      "system_load": 92.0,
+      "memory_usage": 52.2,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 627814005750166961
+  },
+  {
+    "timestamp": 1768722223.9016132,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768722223.8856168,
+      "system_load": 66.7,
+      "memory_usage": 52.2,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -5560476734941707752
+  },
+  {
+    "timestamp": 1768722245.7510176,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768722245.6390157,
+      "system_load": 97.1,
+      "memory_usage": 52.4,
+      "directory_exists": true,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": 2203171476232036224
+  },
+  {
+    "timestamp": 1768722245.8870134,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768722245.8720133,
+      "system_load": 96.0,
+      "memory_usage": 52.8,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -2542478865105396629
+  },
+  {
+    "timestamp": 1768722283.2236724,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768722283.22267,
+      "system_load": 100.0,
+      "memory_usage": 53.4,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 1893988154880476688
+  },
+  {
+    "timestamp": 1768722283.3466725,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768722283.3306708,
+      "system_load": 79.3,
+      "memory_usage": 53.4,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 7574820535594986443
+  },
+  {
+    "timestamp": 1768722305.3609822,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768722305.3609822,
+      "system_load": 91.7,
+      "memory_usage": 53.4,
+      "directory_exists": true,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": -2378298341267523658
+  },
+  {
+    "timestamp": 1768722305.4679713,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768722305.4669726,
+      "system_load": 50.0,
+      "memory_usage": 52.3,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -3884133192142334180
+  },
+  {
+    "timestamp": 1768722318.2997653,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768722318.2997653,
+      "system_load": 70.8,
+      "memory_usage": 52.6,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -1918493191662186461
+  },
+  {
+    "timestamp": 1768722318.4497585,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768722318.4107575,
+      "system_load": 75.0,
+      "memory_usage": 52.6,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 5997217162873327374
+  },
+  {
+    "timestamp": 1768722339.2246857,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768722339.2246857,
+      "system_load": 98.2,
+      "memory_usage": 52.6,
+      "directory_exists": true,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": -4073209406359447711
+  },
+  {
+    "timestamp": 1768722339.3313987,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768722339.3313987,
+      "system_load": 7.4,
+      "memory_usage": 52.2,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 3868754395651623852
+  },
+  {
+    "timestamp": 1768722339.4527173,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768722339.4397192,
+      "system_load": 29.2,
+      "memory_usage": 52.2,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -1136617159229432223
+  },
+  {
+    "timestamp": 1768722339.5633967,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768722339.5624008,
+      "system_load": 41.7,
+      "memory_usage": 52.2,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 683376913549225793
+  },
+  {
+    "timestamp": 1768722354.2499917,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768722354.2489915,
+      "system_load": 16.7,
+      "memory_usage": 52.2,
+      "directory_exists": true,
+      "recent_activity": false,
+      "status": "idle",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": -2080621001401802137
+  },
+  {
+    "timestamp": 1768722354.359409,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768722354.3567839,
+      "system_load": 4.2,
+      "memory_usage": 52.1,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -405862251184967231
+  },
+  {
+    "timestamp": 1768723594.9580007,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768723594.9570024,
+      "system_load": 96.4,
+      "memory_usage": 55.7,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 1966876742500726717
+  },
+  {
+    "timestamp": 1768723595.124042,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768723595.0740461,
+      "system_load": 100.0,
+      "memory_usage": 55.8,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -3784945364737236652
+  },
+  {
+    "timestamp": 1768723618.607594,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768723618.5895936,
+      "system_load": 100.0,
+      "memory_usage": 55.8,
+      "directory_exists": true,
+      "recent_activity": true,
+      "status": "stressed",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": 1949507967922406119
+  },
+  {
+    "timestamp": 1768723618.736681,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768723618.7176778,
+      "system_load": 91.7,
+      "memory_usage": 54.7,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -663507584118493854
+  },
+  {
+    "timestamp": 1768723736.9282625,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768723736.9282625,
+      "system_load": 100.0,
+      "memory_usage": 54.5,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -8919829605162024193
+  },
+  {
+    "timestamp": 1768723737.1022606,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768723737.0542598,
+      "system_load": 100.0,
+      "memory_usage": 54.6,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 5928203148695260388
+  },
+  {
+    "timestamp": 1768723761.0459557,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768723761.0289536,
+      "system_load": 100.0,
+      "memory_usage": 54.6,
+      "directory_exists": true,
+      "recent_activity": true,
+      "status": "stressed",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": 1244506846681815408
+  },
+  {
+    "timestamp": 1768723761.1677353,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768723761.1527362,
+      "system_load": 48.0,
+      "memory_usage": 53.7,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -7852982093584763309
+  },
+  {
+    "timestamp": 1768723809.2794504,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768723809.2194507,
+      "system_load": 100.0,
+      "memory_usage": 54.1,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": 8292015004917281843
+  },
+  {
+    "timestamp": 1768723809.53632,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768723809.5113184,
+      "system_load": 100.0,
+      "memory_usage": 54.1,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -6858416654866458684
+  },
+  {
+    "timestamp": 1768724080.4766905,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "KayGee_1.0",
+      "timestamp": 1768724080.4756892,
+      "system_load": 83.3,
+      "memory_usage": 54.4,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -3657894714433734447
+  },
+  {
+    "timestamp": 1768724080.602849,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Caleon_Genesis_1.12",
+      "timestamp": 1768724080.5878496,
+      "system_load": 50.0,
+      "memory_usage": 54.4,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "offline",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -2605081411338357387
+  },
+  {
+    "timestamp": 1768724096.8721504,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "Cali_X_One",
+      "timestamp": 1768724096.859151,
+      "system_load": 46.4,
+      "memory_usage": 54.4,
+      "directory_exists": true,
+      "recent_activity": true,
+      "status": "healthy",
+      "confidence": 0.9
+    },
+    "confidence": 0.9,
+    "immutable": true,
+    "vault_hash": -1546570340989072105
+  },
+  {
+    "timestamp": 1768724097.0451536,
+    "core_id": "peer_awareness",
+    "data_type": "peer_health",
+    "data": {
+      "name": "UCM_Core_ECM",
+      "timestamp": 1768724097.0151534,
+      "system_load": 100.0,
+      "memory_usage": 54.4,
+      "directory_exists": false,
+      "recent_activity": false,
+      "status": "stressed",
+      "confidence": 0.5
+    },
+    "confidence": 0.5,
+    "immutable": true,
+    "vault_hash": -2238278148719976607
+  }
+]
