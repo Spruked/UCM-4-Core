@@ -48,6 +48,11 @@ class ORBRenderer {
             window.electronAPI.onUpdateOrbState((event, state) => {
                 this.updateOrbState(state);
             });
+
+            // Add status update listener
+            window.electronAPI.onUpdateStatus((event, status, theme) => {
+                this.updateStatus(status, theme);
+            });
         }
 
         // Handle window blur (user clicked elsewhere)
@@ -58,6 +63,18 @@ class ORBRenderer {
 
     updateOrbState(newState) {
         this.orbState = { ...this.orbState, ...newState };
+        this.updateOrbDisplay();
+    }
+
+    updateStatus(status, theme) {
+        // Update status text
+        this.orbStatus.textContent = status;
+
+        // Update theme class on body
+        document.body.className = theme || 'default';
+
+        // Update orb state for compatibility
+        this.orbState.status = status;
         this.updateOrbDisplay();
     }
 

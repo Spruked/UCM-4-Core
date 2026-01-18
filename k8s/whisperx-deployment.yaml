@@ -1,0 +1,54 @@
+# k8s/whisperx-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whisperx
+  labels:
+    app: whisperx
+    component: speech-recognition
+spec:
+  replicas: 2  # Scalable workers
+  selector:
+    matchLabels:
+      app: whisperx
+  template:
+    metadata:
+      labels:
+        app: whisperx
+        component: speech-recognition
+    spec:
+      containers:
+      - name: whisperx
+        image: ucm4/whisperx:latest
+        ports:
+        - containerPort: 8004
+          name: http
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: 1  # GPU for faster inference
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: 1
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8004
+          initialDelaySeconds: 60
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8004
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        volumeMounts:
+        - name: model-cache
+          mountPath: /app/models
+      volumes:
+      - name: model-cache
+        persistentVolumeClaim:
+          claimName: whisperx-models-pvc
+      restartPolicy: Always

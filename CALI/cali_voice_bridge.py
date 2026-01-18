@@ -1,6 +1,6 @@
 # cali_voice_bridge.py - Connect CALI SKG to POM Phonatory Output
-from cali_skg import CALISKGEngine
-from pom_engine import POMEngine
+from CALI.cali_skg import CALISKGEngine
+# from pom_engine import POMEngine  # Disabled - POM not working
 from pathlib import Path
 from typing import Dict, Any
 
@@ -10,7 +10,7 @@ class CALIVoiceBridge:
     Ensures elegant female voice synthesis
     """
 
-    def __init__(self, cali_skg: CALISKGEngine, pom_engine: POMEngine):
+    def __init__(self, cali_skg: CALISKGEngine, pom_engine=None):
         self.cali = cali_skg
         self.pom = pom_engine
 

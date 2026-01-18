@@ -13,16 +13,41 @@ import webbrowser
 import pygetwindow as gw
 import pyautogui
 from datetime import datetime
+import pygame  # For cross-platform audio playback
 
 # Import CALI components
-from ...cali_skg import CALISKGEngine
-from ...cali_voice_bridge import CALIVoiceBridge
+from CALI.cali_skg import CALISKGEngine
+from CALI.cali_voice_bridge import CALIVoiceBridge
 
-# Import POM 2.0 for speech synthesis
-import sys
-from pathlib import Path as PathLib
-sys.path.append(str(PathLib(__file__).resolve().parents[4] / "Caleon_Genesis_1.12" / "Phonatory Output Module"))
-from phonitory_output_module import PhonatoryOutputModule
+# Import POM 2.0 for speech synthesis (DISABLED - using fallback TTS)
+# import sys
+# import os
+# pom_path = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'Caleon_Genesis_1.12', 'Phonatory Output Module')
+# sys.path.append(pom_path)
+# try:
+#     from phonitory_output_module import PhonatoryOutputModule
+#     pom_available = True
+# except ImportError as e:
+#     print(f"[FLOATING UI] POM 2.0 not available ({e}), using fallback TTS")
+#     PhonatoryOutputModule = None
+#     pom_available = False
+#     # Fallback TTS using pyttsx3 or similar
+#     try:
+#         import pyttsx3
+#         fallback_tts_available = True
+#     except ImportError:
+#         fallback_tts_available = False
+#         print("[FLOATING UI] No TTS available, text-only mode")
+
+# For now, disable POM and use only fallback TTS
+pom_available = False
+try:
+    import pyttsx3
+    fallback_tts_available = True
+    print("[FLOATING UI] Using fallback TTS (pyttsx3)")
+except ImportError:
+    fallback_tts_available = False
+    print("[FLOATING UI] No TTS available, text-only mode")
 
 class FloatingOrbUI:
     """
@@ -34,7 +59,7 @@ class FloatingOrbUI:
         self.ui_root = Path(__file__).resolve().parents[3] / "CALI" / "orb" / "ui_overlay"
 
         # State
-        self.is_visible = False
+        self.is_visible = True  # Start visible by default
         self.cursor_position = (0, 0)
         self.active_application = None
 
@@ -49,14 +74,12 @@ class FloatingOrbUI:
         # CALI SKG integration
         self.cali_skg = CALISKGEngine(Path(__file__).resolve().parents[3])
 
-        # POM 2.0 speech synthesis
-        try:
-            pom_config_path = PathLib(__file__).resolve().parents[4] / "Caleon_Genesis_1.12" / "Phonatory Output Module" / "voice_config.json"
-            self.pom = PhonatoryOutputModule(str(pom_config_path))
-            print("[FLOATING UI] POM 2.0 initialized for CALI speech synthesis")
-        except Exception as e:
-            print(f"[FLOATING UI] POM 2.0 initialization failed: {e}")
-            self.pom = None
+        # POM 2.0 speech synthesis (disabled)
+        self.pom = None
+        print("[FLOATING UI] POM 2.0 disabled, using fallback TTS")
+
+        # Initialize pygame for audio playback
+        pygame.mixer.init()
 
         # Browser overlay (if browser permission granted)
         self.browser_ws = None
@@ -86,6 +109,9 @@ class FloatingOrbUI:
         # Launch Electron app
         await self._launch_electron_app()
 
+        # Show UI initially
+        await self._show_ui()
+
         # Start cursor tracking loop
         await self._track_cursor_loop()
 
@@ -99,11 +125,11 @@ class FloatingOrbUI:
         try:
             # Launch electron app
             if os.name == 'nt':  # Windows
-                subprocess.Popen(['npx', 'electron', '.'], 
+                subprocess.Popen(['electron.cmd', '.'], 
                                cwd=str(electron_dir),
                                creationflags=subprocess.CREATE_NO_WINDOW)
             else:
-                subprocess.Popen(['npx', 'electron', '.'], 
+                subprocess.Popen(['electron', '.'], 
                                cwd=str(electron_dir))
             
             print("[FLOATING UI] Electron app launched")
@@ -179,10 +205,40 @@ class FloatingOrbUI:
         target_x = self.cursor_position[0] + offset_x
         target_y = self.cursor_position[1] + offset_y
 
-        # Keep within screen bounds
-        screen_width, screen_height = pyautogui.size()
-        target_x = max(0, min(target_x, screen_width - 120))  # 120px bubble width
-        target_y = max(0, min(target_y, screen_height - 120))  # 120px bubble height
+        # Get monitor bounds for the current cursor position
+        try:
+            # Try to get monitor info (requires screeninfo package)
+            from screeninfo import get_monitors
+            monitors = get_monitors()
+            
+            # Find which monitor contains the cursor
+            cursor_monitor = None
+            for monitor in monitors:
+                if (monitor.x <= self.cursor_position[0] < monitor.x + monitor.width and
+                    monitor.y <= self.cursor_position[1] < monitor.y + monitor.height):
+                    cursor_monitor = monitor
+                    break
+            
+            if cursor_monitor:
+                # Keep within the monitor bounds where cursor is located
+                monitor_left = cursor_monitor.x
+                monitor_top = cursor_monitor.y
+                monitor_right = cursor_monitor.x + cursor_monitor.width
+                monitor_bottom = cursor_monitor.y + cursor_monitor.height
+                
+                target_x = max(monitor_left, min(target_x, monitor_right - 120))
+                target_y = max(monitor_top, min(target_y, monitor_bottom - 120))
+            else:
+                # Fallback to primary screen if monitor detection fails
+                screen_width, screen_height = pyautogui.size()
+                target_x = max(0, min(target_x, screen_width - 120))
+                target_y = max(0, min(target_y, screen_height - 120))
+                
+        except ImportError:
+            # Fallback if screeninfo not available
+            screen_width, screen_height = pyautogui.size()
+            target_x = max(0, min(target_x, screen_width - 120))
+            target_y = max(0, min(target_y, screen_height - 120))
 
         # Send position update to UI renderer (Electron)
         await self._send_ui_command({
@@ -289,23 +345,27 @@ class FloatingOrbUI:
         """Handle user clicking the ORB bubble"""
         print(f"[FLOATING UI] Bubble clicked - state: {data.get('state')}")
 
+        # Update status to converging
+        await self.update_orb_state({"status": "Converging"})
+        await self._send_ui_command({"command": "update_status", "status": "Converging", "theme": "converging"})
+
         # Generate CALI greeting/response
         try:
             # Create a simple query for CALI
             user_query = "User has interacted with the ORB interface"
-            
+
             # Get CALI response
-            cali_response = self.cali_skg.process_query(user_query)
-            
+            cali_response = self.cali_skg.generate_orb_response(user_query, {})
+
             # Generate speech if POM is available
             if "text" in cali_response and self.pom:
                 response_text = cali_response["text"]
                 print(f"[CALI VOICE] Generating speech: {response_text[:100]}...")
-                
+
                 # Generate audio file with POM 2.0
                 import time
                 audio_path = f"cali_response_{int(time.time())}.wav"
-                
+
                 try:
                     # Use POM to generate elegant female voice
                     generated_file = self.pom.phonate(
@@ -316,32 +376,108 @@ class FloatingOrbUI:
                         articulation={"vowel": "a"},  # Natural articulation
                         nasalization={"level": 0.3}  # Slight nasal quality
                     )
-                    
+
                     print(f"[CALI VOICE] Speech generated: {generated_file}")
-                    
-                    # Play the audio (cross-platform)
-                    import subprocess
-                    import os
-                    
-                    if os.name == 'nt':  # Windows
-                        subprocess.run(['powershell', '-c', f'(New-Object Media.SoundPlayer "{generated_file}").PlaySync();'])
-                    else:  # Linux/Mac
-                        subprocess.run(['aplay', generated_file])  # Linux
-                        # For Mac: subprocess.run(['afplay', generated_file])
-                    
+
+                    # Play the audio with pygame
+                    pygame.mixer.music.load(generated_file)
+                    pygame.mixer.music.play()
+                    while pygame.mixer.music.get_busy():
+                        await asyncio.sleep(0.1)
+
                     print("[CALI VOICE] Speech playback completed")
-                    
+
                 except Exception as e:
-                    print(f"[CALI VOICE] Speech generation failed: {e}")
-                    # Fallback to text-only response
-                    print(f"[CALI TEXT] {response_text}")
-                    
+                    print(f"[CALI VOICE] POM speech generation failed: {e}")
+                    # Fallback to simple TTS
+                    self._fallback_speech(response_text)
+
+            elif "text" in cali_response and fallback_tts_available:
+                # Use fallback TTS
+                response_text = cali_response["text"]
+                self._fallback_speech(response_text)
+
             elif "text" in cali_response:
-                # Fallback if POM not available
+                # Fallback to text-only response
                 print(f"[CALI TEXT] {cali_response['text']}")
-                
+
         except Exception as e:
             print(f"[FLOATING UI] CALI interaction error: {e}")
+
+        # Update status back to ready
+        await self.update_orb_state({"status": "Ready"})
+        await self._send_ui_command({"command": "update_status", "status": "Ready", "theme": "ready"})
+
+    def _fallback_speech(self, text: str):
+        """Fallback speech synthesis using pyttsx3"""
+        try:
+            import pyttsx3
+            engine = pyttsx3.init()
+            # Set female voice properties
+            voices = engine.getProperty('voices')
+            for voice in voices:
+                if 'female' in voice.name.lower() or 'zira' in voice.name.lower():
+                    engine.setProperty('voice', voice.id)
+                    break
+            engine.setProperty('rate', 180)  # Slightly slower for elegance
+            engine.say(text)
+            engine.runAndWait()
+            print("[CALI VOICE] Fallback speech completed")
+        except Exception as e:
+            print(f"[CALI VOICE] Fallback speech failed: {e}")
+            print(f"[CALI TEXT] {text}")
+
+    async def process_user_query(self, query: str, context: Dict = {}):
+        """Process user query using frozen SKG"""
+        # Update status to converging
+        await self.update_orb_state({"status": "Converging"})
+        await self._send_ui_command({"command": "update_status", "status": "Converging", "theme": "converging"})
+
+        try:
+            # Use frozen SKG to generate response
+            response = self.cali_skg.generate_orb_response(query, context)
+
+            # Generate speech if available
+            if response.get("text") and self.pom:
+                response_text = response["text"]
+                print(f"[CALI VOICE] Generating speech: {response_text[:100]}...")
+
+                import time
+                audio_path = f"cali_response_{int(time.time())}.wav"
+
+                try:
+                    generated_file = self.pom.phonate(
+                        text=response_text,
+                        out_path=audio_path,
+                        pitch_factor=1.0,
+                        formant_target={"f1": 500, "f2": 1500},
+                        articulation={"vowel": "a"},
+                        nasalization={"level": 0.3}
+                    )
+
+                    # Play with pygame
+                    pygame.mixer.music.load(generated_file)
+                    pygame.mixer.music.play()
+                    while pygame.mixer.music.get_busy():
+                        await asyncio.sleep(0.1)
+
+                    print("[CALI VOICE] Speech playback completed")
+
+                except Exception as e:
+                    print(f"[CALI VOICE] Speech generation failed: {e}")
+                    print(f"[CALI TEXT] {response_text}")
+
+            # Learn from interaction
+            self.cali_skg.learn_from_user_feedback({"interaction_quality": "positive", "query_type": "informational"})
+
+        except Exception as e:
+            print(f"[FLOATING UI] Query processing error: {e}")
+
+        # Update status back to ready
+        await self.update_orb_state({"status": "Ready"})
+        await self._send_ui_command({"command": "update_status", "status": "Ready", "theme": "ready"})
+
+        return response
 
     async def _handle_resolution_response(self, data: Dict[str, Any]):
         """Handle user response to resolution interface"""

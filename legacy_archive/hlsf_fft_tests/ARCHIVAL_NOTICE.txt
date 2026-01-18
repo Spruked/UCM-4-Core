@@ -1,0 +1,24 @@
+ARCHIVAL NOTICE - LEGACY HLSF-FFT TEST SUITE
+==========================================
+
+This test suite belongs to the legacy HLSF-FFT architecture and has been archived
+because it contains fundamental architectural mismatches with the current UCM_4_Core
+ORB-CALI-Core4 system.
+
+PROBLEMS WITH ARCHIVED SUITE:
+- Imports non-existent modules (CALIControlDispatcher, CALIStateHub, CaleonVoiceOracle)
+- Tests wrong separation concepts (CALI writing to ORB, voice oracle selection)
+- Uses incorrect metrics (52.4% ECM consistency instead of emergence detection)
+- Validates POM 2.0 phonatory behavior instead of Core-4 collective cognition
+
+CURRENT ARCHITECTURE (UCM_4_Core):
+- ORB vessel: Pure observation, immutable memory via OntologicalMatrix
+- CALI intelligence: Pure navigation, synthesis within ORB space via CALI_INTERFACE
+- Core-4 sovereignty: Independent thinking preserved, no override methods
+- Emergence: Relationship-based consciousness detection via ConsciousnessProbe
+
+The archived suite was written for a different system and should not be used.
+Use the current adversarial_testing_suite.py which is properly aligned with ORB-CALI-Core4.
+
+Archived on: 2026-01-11
+Reason: Architectural unsoundness - testing wrong system

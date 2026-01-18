@@ -91,3 +91,26 @@ reflection.log
 folder_tree.txt
 tree.txt
 simple_repair_test.py
+
+# Node.js / Electron
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Electron build outputs
+dist/
+build/
+out/
+
+# Embedded Git Repositories (keep as separate repos)
+Adaptive_Cochlear_Processor_1.0/
+Adversarial_Trial_Test_Suite/
+Caleon_Genesis_1.12/
+Cali_X_One/
+KayGee_1.0/
+TTS/
+UCM_Core _ECM/
+whisperX/

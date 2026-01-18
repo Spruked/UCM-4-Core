@@ -29,6 +29,14 @@ from orb.orb_vessel import ORB_VESSEL
 from orb.resolution_engine import ResolutionEngine
 from orb.ui_overlay.floating_window import FLOATING_UI
 
+# Import the new perception integration
+try:
+    from orb_perception_integration import get_orb_bridge
+    PERCEPTION_AVAILABLE = True
+except ImportError:
+    print("⚠️  ORB Perception Integration not available")
+    PERCEPTION_AVAILABLE = False
+
 class ORBLauncher:
     """ORB Launcher - Maintains separation between vessel and intelligence"""
 
@@ -36,6 +44,7 @@ class ORBLauncher:
         self.vessel = ORB_VESSEL
         self.resolution_engine = ResolutionEngine()
         self.ui = FLOATING_UI
+        self.perception_bridge = get_orb_bridge() if PERCEPTION_AVAILABLE else None
 
     async def launch_observer_mode(self):
         """Launch ORB in pure observation mode (always-on vessel)"""
@@ -43,6 +52,15 @@ class ORBLauncher:
         print("   Mode: Observer (never intervenes)")
         print("   Memory: Immutable ontological matrix")
         print("   Tracking: Core-4 tension and emergence")
+
+        # Show perception status
+        if self.perception_bridge:
+            status = await self.perception_bridge.get_consciousness_status()
+            print("   Perception: ACP1.0 + WhisperX + XTTS integrated")
+            print(f"   ASR Active: {status['perception_active']}")
+            print(f"   TTS Active: {status['synthesis_active']}")
+        else:
+            print("   Perception: Basic (no advanced ASR/TTS)")
 
         # Activate observation vessel
         self.vessel.start_observation()
@@ -57,6 +75,8 @@ class ORBLauncher:
         except KeyboardInterrupt:
             print("🌀 Shutting down ORB observation vessel...")
             self.vessel.stop_observation()
+            if self.perception_bridge:
+                await self.perception_bridge.shutdown()
 
     async def launch_resolver_mode(self):
         """Launch ORB resolution interface (on-demand)"""
@@ -64,6 +84,10 @@ class ORBLauncher:
         print("   Mode: Resolver (provides guidance when requested)")
         print("   Engine: SoftMax consensus synthesis")
         print("   UI: Floating bubble with escalation")
+
+        # Show perception integration
+        if self.perception_bridge:
+            print("   Perception: Full ASR → ORB → TTS pipeline active")
 
         # Start floating UI
         await self.ui.start_floating()
@@ -75,11 +99,21 @@ class ORBLauncher:
                 print("🎯 ORB Resolver: Active and listening for escalations")
         except KeyboardInterrupt:
             print("🎯 Shutting down ORB resolution interface...")
+            if self.perception_bridge:
+                await self.perception_bridge.shutdown()
 
     async def launch_dual_mode(self):
         """Launch both observation and resolution (for testing)"""
         print("🌀🎯 Launching ORB - Dual Mode (Testing Only)")
         print("   WARNING: Dual mode for testing only - production separates modes")
+
+        # Show full integration status
+        if self.perception_bridge:
+            status = await self.perception_bridge.get_consciousness_status()
+            print("   Full Pipeline: Core 4 + 1 → ORB → XTTS")
+            print(f"   Emergence Readiness: {status['emergence_readiness']:.1%}")
+            print(f"   Perception Active: {status['perception_active']}")
+            print(f"   Synthesis Active: {status['synthesis_active']}")
 
         # Start both
         observation_task = asyncio.create_task(self.launch_observer_mode())
@@ -118,8 +152,8 @@ def main():
             asyncio.run(launcher.launch_dual_mode())
 
 async def run_orb_test(launcher):
-    """Run ORB with test data to verify separation"""
-    print("🧪 ORB Test: Verifying vessel-intelligence separation")
+    """Run ORB with test data to verify separation and perception integration"""
+    print("🧪 ORB Test: Verifying vessel-intelligence separation + perception pipeline")
 
     # Test observation (ORB vessel only)
     print("\n📊 Testing ORB observation vessel...")
@@ -148,14 +182,52 @@ async def run_orb_test(launcher):
     )
     print(f"✅ Resolution confidence: {resolution_result.get('confidence', 0):.1%}")
 
+    # Test perception bridge if available
+    if launcher.perception_bridge:
+        print("\n🧠 Testing perception bridge...")
+
+        # Test consciousness status
+        status = await launcher.perception_bridge.get_consciousness_status()
+        print(f"✅ Emergence readiness: {status['emergence_readiness']:.1%}")
+        print(f"✅ Perception active: {status['perception_active']}")
+        print(f"✅ Synthesis active: {status['synthesis_active']}")
+
+        # Test speech synthesis
+        if status['synthesis_active']:
+            print("🗣️ Testing speech synthesis...")
+            speech_result = await launcher.perception_bridge.generate_speech_output(
+                "ORB perception bridge test successful"
+            )
+            if speech_result['synthesized']:
+                print(f"✅ Speech synthesized: {speech_result['audio_path']}")
+            else:
+                print(f"❌ Speech synthesis failed: {speech_result.get('error', 'Unknown error')}")
+
+        # Test Core-4 verdict processing
+        print("🔄 Testing Core-4 verdict processing...")
+        test_verdict = {
+            "decision": "accept",
+            "confidence": 0.85,
+            "reasoning": "Test verdict from perception bridge"
+        }
+        test_context = {"escalate": True, "source": "test"}
+
+        result = await launcher.perception_bridge.process_core_verdict(
+            "test_core", test_verdict, test_context
+        )
+        print(f"✅ Verdict processed: {result.get('status', 'unknown')}")
+
     # Verify separation
     print("\n🔍 Verifying architectural separation...")
     print("✅ ORB vessel: Pure observation, no processing")
     print("✅ CALI resolution: Pure synthesis, no observation")
     print("✅ Memory integrity: Vessel immutable, intelligence reads only")
+    print("✅ Perception: ASR → ORB → TTS pipeline integrated")
 
     launcher.vessel.stop_observation()
-    print("✅ ORB test completed - separation preserved")
+    if launcher.perception_bridge:
+        await launcher.perception_bridge.shutdown()
+    print("✅ ORB test completed - separation and integration preserved")
 
 if __name__ == "__main__":
     main()

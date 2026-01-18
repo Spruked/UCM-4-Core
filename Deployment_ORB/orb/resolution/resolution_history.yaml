@@ -1,0 +1,88 @@
+- confidence: 0.5121927042988744
+  explanation: 'Based on synthesis of Core-4 observations:
+
+
+    - Caleon_Genesis: 51.2% confidence in perspective
+
+    - Cali_X_One: 48.8% confidence in perspective
+
+
+    Consensus recommendation: ACCEPT
+
+
+    Note: This is advisory. Individual cores may have valid alternative perspectives.'
+  human_escalation_available: true
+  query: Should we accept this proposal given the decision making context?
+  resolved_at: '2026-01-11T23:45:55.133168'
+  status: RESOLVED
+  synthesized_from: 20
+  verdict:
+    alternatives_count: 1
+    confidence: 2.5324385408597747
+    recommendation: ACCEPT
+  worker_id: decision_worker
+- confidence: 1.0
+  explanation: 'Based on synthesis of Core-4 observations:
+
+
+    - Caleon_Genesis: 100.0% confidence in perspective
+
+
+    Consensus recommendation: ACCEPT
+
+
+    Note: This is advisory. Individual cores may have valid alternative perspectives.'
+  human_escalation_available: true
+  query: How should I order chapters for optimal narrative flow?
+  resolved_at: '2026-01-11T23:48:15.354733'
+  status: RESOLVED
+  synthesized_from: 20
+  verdict:
+    alternatives_count: 1
+    confidence: 2.3
+    recommendation: ACCEPT
+  worker_id: booklet_maker
+- confidence: 0.75
+  explanation: 'Based on synthesis of Core-4 observations:
+
+
+    - Caleon_Genesis: 100.0% confidence in perspective
+
+
+    Consensus recommendation: CONDITIONAL
+
+
+    Note: This is advisory. Individual cores may have valid alternative perspectives.'
+  human_escalation_available: true
+  query: How should I order chapters for optimal narrative flow?
+  resolved_at: '2026-01-11T23:52:46.565877'
+  status: RESOLVED
+  synthesized_from: 20
+  verdict:
+    alternatives_count: 1
+    confidence: 2.3
+    recommendation: CONDITIONAL
+  worker_id: booklet_maker
+- confidence: 0.5214154615267241
+  explanation: 'Based on synthesis of Core-4 observations:
+
+
+    - Cali_X_One: 52.1% confidence in perspective
+
+    - Caleon_Genesis: 47.9% confidence in perspective
+
+
+    Consensus recommendation: REJECT
+
+
+    Note: This is advisory. Individual cores may have valid alternative perspectives.'
+  human_escalation_available: true
+  query: 'Stability test query #0: How should we handle this ongoing disagreement?'
+  resolved_at: '2026-01-12T00:08:53.673903'
+  status: RESOLVED
+  synthesized_from: 20
+  verdict:
+    alternatives_count: 1
+    confidence: 2.4782123192290086
+    recommendation: REJECT
+  worker_id: stability_tester

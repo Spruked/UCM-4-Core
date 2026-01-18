@@ -1,0 +1,18 @@
+context: {}
+created_at: '2026-01-12T00:36:36.390495'
+id: UCM_Core_ECM_vs_Caleon_Genesis_20260112_003636
+participants:
+- UCM_Core_ECM
+- Caleon_Genesis
+recursion_count: 0
+resolution: null
+status: unresolved
+verdicts:
+  Caleon_Genesis:
+    confidence: 0.9
+    recommendation: REJECT
+  UCM_Core_ECM:
+    confidence: 0.894413330014517
+    domain: classical_mechanics
+    formalism: Hamiltonian/Lagrangian, differential equations
+    recommendation: ACCEPT

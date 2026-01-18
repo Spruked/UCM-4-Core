@@ -1,0 +1,51 @@
+# UCM_4_Core/requirements.txt
+# Python dependencies for ORB system deployment
+
+# Core dependencies
+asyncio
+numpy
+scipy
+torch>=2.0.0
+torchaudio
+
+# Audio processing
+librosa
+soundfile
+pyaudio
+webrtcvad
+
+# Machine Learning
+transformers
+tokenizers
+accelerate
+
+# Speech processing
+TTS
+openai-whisper
+whisperx
+
+# Web framework
+fastapi
+uvicorn[standard]
+websockets
+
+# Data processing
+pandas
+matplotlib
+seaborn
+
+# Utilities
+python-dotenv
+pyyaml
+requests
+aiofiles
+
+# Development
+pytest
+pytest-asyncio
+black
+flake8
+
+# Logging and monitoring
+structlog
+rich

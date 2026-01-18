@@ -1,0 +1,13 @@
+{
+  "action_id": "conflict_resolution_0",
+  "timestamp": "2026-01-13T10:42:01.301282",
+  "edge": [
+    "test_node_3",
+    "test_node_4",
+    0
+  ],
+  "edge_data": {
+    "relationship": "enables",
+    "importance": 0.8
+  }
+}

@@ -13,11 +13,12 @@ const WINDOW_CONFIG = {
     width: 120,
     height: 120,
     frame: false,
-    transparent: true,
+    transparent: true, // Restore transparency for proper desktop overlay
     alwaysOnTop: true,
     skipTaskbar: true,
     resizable: false,
-    show: false,
+    show: true,
+    backgroundColor: '#00000000', // Transparent background
     webPreferences: {
         nodeIntegration: false,
         contextIsolation: true,
@@ -26,17 +27,32 @@ const WINDOW_CONFIG = {
 };
 
 function createWindow() {
+    console.log('[ELECTRON] Creating ORB window...');
+
     // Create the browser window
     mainWindow = new BrowserWindow(WINDOW_CONFIG);
+
+    console.log('[ELECTRON] Window created, loading HTML...');
 
     // Load the app
     mainWindow.loadFile('index.html');
 
-    // Hide initially
-    mainWindow.hide();
+    console.log('[ELECTRON] HTML loaded, positioning window...');
+
+    // Position in center initially, then let Python control positioning
+    const { width, height } = screen.getPrimaryDisplay().size;
+    mainWindow.setPosition(width/2 - 60, height/2 - 60); // Center the 120x120 window
+
+    console.log('[ELECTRON] Window positioned, setting always on top...');
+
+    // Ensure it's always on top
+    mainWindow.setAlwaysOnTop(true, 'screen-saver');
+
+    console.log('[ELECTRON] ORB window ready!');
 
     // Handle window closed
     mainWindow.on('closed', () => {
+        console.log('[ELECTRON] ORB window closed');
         mainWindow = null;
     });
 
@@ -104,6 +120,10 @@ function handlePythonCommand(command) {
             updateOrbState(command);
             break;
 
+        case 'update_status':
+            updateStatus(command);
+            break;
+
         default:
             // Handle non-command messages (like connection_established)
             if (command.type === 'connection_established') {
@@ -144,6 +164,12 @@ function updateOrbState(command) {
     if (!mainWindow || mainWindow.isDestroyed()) return;
 
     mainWindow.webContents.send('update-orb-state', command.state);
+}
+
+function updateStatus(command) {
+    if (!mainWindow || mainWindow.isDestroyed()) return;
+
+    mainWindow.webContents.send('update-status', command.status, command.theme);
 }
 
 // IPC handlers for renderer communication

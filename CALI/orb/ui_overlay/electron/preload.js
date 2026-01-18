@@ -17,6 +17,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
     onApplicationContext: (callback) => ipcRenderer.on('application-context', callback),
     onShowResolution: (callback) => ipcRenderer.on('show-resolution', callback),
     onUpdateOrbState: (callback) => ipcRenderer.on('update-orb-state', callback),
+    onUpdateStatus: (callback) => ipcRenderer.on('update-status', callback),
 
     // Remove listeners
     removeAllListeners: (event) => ipcRenderer.removeAllListeners(event)
