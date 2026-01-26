@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  ucm-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ucm_4_core
+    ports:
+      - "8000:8000"    # Main API
+      - "8080:8080"    # ORB interface
+      - "3000:3000"    # Web interface (if any)
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./unified_vault:/app/unified_vault
+    environment:
+      - PYTHONPATH=/app
+      - UCM_ENV=docker
+      - LOG_LEVEL=INFO
+    networks:
+      - ucm-network
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  caleon-genesis:
+    build:
+      context: ./Caleon_Genesis_1_12
+      dockerfile: ../Dockerfile
+    container_name: caleon_genesis_1_12
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./Caleon_Genesis_1_12/logs:/app/logs
+      - ./Caleon_Genesis_1_12/data:/app/data
+    environment:
+      - PYTHONPATH=/app
+      - CORE_NAME=Caleon_Genesis_1_12
+    networks:
+      - ucm-network
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  cali-x-one:
+    build:
+      context: ./Cali_X_One
+      dockerfile: ../Dockerfile
+    container_name: cali_x_one
+    ports:
+      - "8002:8000"
+    volumes:
+      - ./Cali_X_One/logs:/app/logs
+      - ./Cali_X_One/data:/app/data
+      - ./Cali_X_One/vault_system:/app/vault_system
+    environment:
+      - PYTHONPATH=/app
+      - CORE_NAME=Cali_X_One
+    networks:
+      - ucm-network
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: ucm_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ucm-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ucm_postgres
+    environment:
+      POSTGRES_DB: ucm_core
+      POSTGRES_USER: ucm_user
+      POSTGRES_PASSWORD: ucm_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ucm-network
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: ucm_nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    networks:
+      - ucm-network
+    depends_on:
+      - ucm-core
+      - caleon-genesis
+      - cali-x-one
+    restart: unless-stopped
+
+volumes:
+  redis_data:
+  postgres_data:
+
+networks:
+  ucm-network:
+    driver: bridge
