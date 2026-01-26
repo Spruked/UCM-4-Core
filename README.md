@@ -3,11 +3,16 @@
 **Unified Consciousness Matrix - Core 4**  
 *An advanced AI orchestration system featuring CALI intelligence, ORB observation vessels, and Distributed Health Consensus.*
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![GitHub](https://img.shields.io/badge/GitHub-UCM__4__Core-blue)](https://github.com/Spruked/UCM_4_Core)
+
 ## Overview
 
 UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent systems into a unified consciousness matrix. The system features:
 
 - **CALI (Consciousness and Learning Intelligence)**: Self-repairing knowledge graph intelligence
+- **ORB_X (Desktop Control Interface)**: PySide6-based GUI for system monitoring and control
 - **ORB (Ontologically Recursive Bubble)**: Floating UI observation vessel with cursor tracking
 - **DHC (Distributed Health Consensus)**: Deterministic peer monitoring and cooperative advisory system
 - **Multi-System Integration**: Seamless communication between CALI, ORB, and various AI subsystems
@@ -27,6 +32,14 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
 - Borderless window design for seamless desktop integration
 - WebSocket communication with Python backend
 - Windows boot auto-start capability
+
+### 🖥️ ORB_X Desktop Control Interface
+- **Real-Time Dashboard**: UCM connection status, worker health, CALI integration
+- **Worker Swarm Control**: Monitor and manage processing queues and workers
+- **CALI Integration Hub**: Handle AI escalations and knowledge requests
+- **Command Interface**: Send JSON commands with real-time responses
+- **System Tray Support**: Background monitoring with notifications
+- **Connection Alerts**: Automatic notifications for connect/disconnect events
 
 ### � Distributed Health Consensus (DHC)
 - **Peer Monitoring**: Deterministic health observation across all cores
@@ -58,6 +71,17 @@ UCM_4_Core is a sophisticated AI framework that integrates multiple intelligent 
                     │ State Management│    │Versioned Deploy │
                     └─────────────────┘    └─────────────────┘
 ```
+
+## Core Module ORB Connections
+
+Each of the four UCM cores (KayGee_1.0, Caleon_Genesis_1.12, Cali_X_One, UCM_Core _ECM) contains a dedicated folder for ORB connectivity and autonomy management:
+
+- `KayGee_1.0/KayGee_1.0_orb_connect/`
+- `Caleon_Genesis_1.12/Caleon_Genesis_1.12_orb_connect/`
+- `Cali_X_One/Cali_X_One_orb_connect/`
+- `UCM_Core _ECM/UCM_Core_ECM_orb_connect/`
+
+These folders contain autonomy indices, cooperative advisory scripts, and integration points for each core's connection to the CALI ORB system.
 
 ## DHC Architecture Details
 
@@ -119,7 +143,14 @@ This marks the first successful completion of the observation → suggestion →
    pip install -r requirements.txt
    ```
 
-3. **Install Electron dependencies**
+3. **Install ORB_X dependencies**
+   ```bash
+   cd orb_x
+   python setup.py
+   cd ..
+   ```
+
+4. **Install Electron dependencies** (optional)
    ```bash
    cd CALI/orb/ui_overlay/electron
    npm install
@@ -139,12 +170,18 @@ This marks the first successful completion of the observation → suggestion →
    python CALI_Intelligence_Launcher.py
    ```
 
-2. **Launch ORB Interface**
+2. **Launch ORB_X Control Interface**
    ```bash
-   python CALI_Orb_Launcher.py
+   cd orb_x
+   python orb_x.py
    ```
 
-3. **Run Full System**
+3. **Launch ORB System**
+   ```bash
+   python CALI_Orb_Launcher.py --mode observer
+   ```
+
+4. **Run Full System**
    ```bash
    python UCM_Core_4_Launcher.py
    ```
@@ -183,8 +220,8 @@ python launch_complete_orb.py
 - `CALI/orb/ui_overlay/electron/`: Electron desktop application
 - `CALI/orb/ui_overlay/electron/index.html`: ORB visual interface
 
-### POM Speech
-- `Caleon_Genesis_1.12/Phonatory Output Module/`: Complete POM implementation
+### Coqui XTTS Speech Synthesis
+- `Caleon_Genesis_1.12/Phonatory Output Module/`: Complete Coqui XTTS PhonatoryOutputModule implementation
 - `Caleon_Genesis_1.12/Phonatory Output Module/phonitory_output_module.py`: Core TTS engine
 
 ## System States
@@ -205,7 +242,7 @@ python -m pytest CALI/ -v
 # Test ORB integration
 python CALI/orb/test_full_system.py
 
-# Validate POM speech
+# Validate Coqui XTTS speech synthesis
 python Caleon_Genesis_1.12/Phonatory Output Module/test_tts_basic.py
 ```
 

@@ -50,55 +50,122 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Spyder project settings
+.spyderproject
+.spyproject
 
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Rope project settings
+.ropeproject
 
-# Logs
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# dotenv environment variables file
+.env
+.env.local
+.env.production
+.env.staging
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
 *.log
-logs/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 
-# Audio cache and temporary files
-audio_cache/
-*.wav
-output_voice*.wav
+# Flask stuff:
+instance/
+.webassets-cache
 
-# Test reports
-adversarial_test_report*.json
-llm_adversarial_tests.json
+# Scrapy stuff:
+.scrapy
 
-# Database files
-*.db
-ucm_skg.db
+# Sphinx documentation
+docs/_build/
 
-# Security keys (keep local)
-.cali_security_key
+# PyBuilder
+target/
 
-# Temporary files
-reflection.log
-folder_tree.txt
-tree.txt
-simple_repair_test.py
+# Jupyter Notebook
+.ipynb_checkpoints
 
-# Node.js / Electron
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm
-.yarn-integrity
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
 
 # Electron build outputs
 dist/
@@ -114,3 +181,35 @@ KayGee_1.0/
 TTS/
 UCM_Core _ECM/
 whisperX/
+
+# Project specific
+logs/
+*.log
+reflection.log
+ucm_skg.db
+test_results.json
+configuration_freeze_snapshot.json
+adversarial_test_report.json
+adversarial_test_report_frozen_2026-01-11.json
+test_desktop_output.txt
+ports.md
+tree.txt
+folder_tree.txt
+desktop.ini
+
+# Audio and media
+*.wav
+*.mp3
+*.mp4
+audio_cache/
+embeddings/
+
+# API keys and secrets
+.cali_security_key
+*secret*
+*key*
+*token*
+
+# OS specific
+.DS_Store
+Thumbs.db

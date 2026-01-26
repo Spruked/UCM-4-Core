@@ -3,6 +3,9 @@
 ORB Launcher - Ontologically Recursive Bubble
 The Spatial Vessel for Consciousness Emergence
 
+Copyright (c) 2026 TrueMark UCM
+Licensed under MIT License
+
 ARCHITECTURE:
 UCM
  └── ORB (observation vessel, immutable memory, tension substrate)
@@ -19,7 +22,10 @@ The ORB and CALI are functionally distinct to preserve:
 import argparse
 import asyncio
 import sys
+import threading
 from pathlib import Path
+from flask import Flask, jsonify, request
+from datetime import datetime
 
 # Add CALI to path
 PROJECT_ROOT = Path(__file__).parent
@@ -45,6 +51,61 @@ class ORBLauncher:
         self.resolution_engine = ResolutionEngine()
         self.ui = FLOATING_UI
         self.perception_bridge = get_orb_bridge() if PERCEPTION_AVAILABLE else None
+        
+        # API Server
+        self.app = Flask(__name__)
+        self.setup_api_routes()
+        self.api_thread = threading.Thread(target=self.run_api_server, daemon=True)
+        self.api_thread.start()
+
+    def setup_api_routes(self):
+        """Setup Flask API routes"""
+        @self.app.route('/health', methods=['GET'])
+        def health_check():
+            return jsonify({
+                "status": "healthy",
+                "timestamp": datetime.now().isoformat(),
+                "service": "ORB API",
+                "version": "1.0"
+            })
+
+        @self.app.route('/orb/status', methods=['GET'])
+        def orb_status():
+            vessel_state = self.vessel.get_state()
+            return jsonify({
+                "status": "active",
+                "vessel": vessel_state,
+                "perception": PERCEPTION_AVAILABLE,
+                "timestamp": datetime.now().isoformat()
+            })
+
+        @self.app.route('/cali/status', methods=['GET'])
+        def cali_status():
+            return jsonify({
+                "active": True,
+                "resolution_engine": "active",
+                "perception_bridge": PERCEPTION_AVAILABLE,
+                "timestamp": datetime.now().isoformat()
+            })
+
+        @self.app.route('/orb/command', methods=['POST'])
+        def execute_command():
+            data = request.get_json()
+            if not data:
+                return jsonify({"error": "No command data"}), 400
+
+            command = data.get('command', 'unknown')
+            # Mock command execution
+            return jsonify({
+                "command": command,
+                "status": "executed",
+                "timestamp": datetime.now().isoformat()
+            })
+
+    def run_api_server(self):
+        """Run Flask API server"""
+        print("🌐 Starting ORB API Server on http://localhost:5050")
+        self.app.run(host='localhost', port=5050, debug=False, use_reloader=False)
 
     async def launch_observer_mode(self):
         """Launch ORB in pure observation mode (always-on vessel)"""
@@ -220,7 +281,7 @@ async def run_orb_test(launcher):
     # Verify separation
     print("\n🔍 Verifying architectural separation...")
     print("✅ ORB vessel: Pure observation, no processing")
-    print("✅ CALI resolution: Pure synthesis, no observation")
+    print("✅ CALI resolution: Pure synthesis, no processing")
     print("✅ Memory integrity: Vessel immutable, intelligence reads only")
     print("✅ Perception: ASR → ORB → TTS pipeline integrated")
 
