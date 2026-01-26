@@ -1,1 +1,0 @@
-"""SoftMax Advisory SKG package."""

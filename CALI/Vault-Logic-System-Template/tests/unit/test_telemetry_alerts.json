@@ -1,5 +1,0 @@
-{
-  "alert": "high_drift",
-  "threshold": 0.7,
-  "triggered": true
-}

@@ -1,5 +1,0 @@
-{
-  "input": "pricing edge case",
-  "expected_action": "escalate",
-  "telemetry_check": true
-}

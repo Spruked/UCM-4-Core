@@ -3,18 +3,18 @@ from pathlib import Path
 from datetime import datetime
 from cali_skg import CALISKGEngine
 from cali_voice_bridge import CALIVoiceBridge
-from pom_engine import POMEngine
+from Caleon_Genesis_1_12.Phonatory_Output_Module.phonitory_output_module import PhonatoryOutputModule
 
 class UCMWithCALIInterface:
     def __init__(self, base_path: Path):
         self.base_path = base_path
-        self.pom = POMEngine()
+        self.tts = PhonatoryOutputModule()
         self.cali = CALISKGEngine(base_path)
-        self.voice_bridge = CALIVoiceBridge(self.cali, self.pom)
+        self.voice_bridge = CALIVoiceBridge(self.cali, self.tts)
 
         print("✅ UCM-CALI Integration Active")
         print(f"📊 CALI Core Nodes: {len(self.cali.kg.nodes())}")
-        print(f"🎤 Voice Engine: {self.pom.get_status()['engine']}")
+        print(f"🎤 Voice Engine: {self.tts.model_name}")
 
     def process_user_query(self, query: str, user_id: str = None) -> Dict[str, Any]:
         """
